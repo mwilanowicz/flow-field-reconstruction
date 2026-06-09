@@ -1,4 +1,4 @@
-# Flow Field Modeling: Convolutional Autoencoder vs. PCA
+# Flow Field Reconstruction: Convolutional Autoencoder vs. PCA
 
 ## Project Overview
 This project focuses on the spatial reconstruction of fluid flow fields, specifically the **Von Kármán vortex street**, using unsupervised machine learning and deep learning techniques. The objective is to evaluate and compare the performance of a non-linear Convolutional Autoencoder (CAE) against a traditional linear dimensionality reduction baseline (PCA / POD).
