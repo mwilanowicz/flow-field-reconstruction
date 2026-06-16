@@ -1,9 +1,9 @@
 """
 File: engine.py
 Description: Process logic for training and evaluaion of the model. 
-Optimized for autoencoder regression.
+Optimized for autoencoder reconstruction.
 Author: Marcel Wilanowicz
-Date: 2026-05-13
+Date: 2026-06-12
 """
 
 import torch
@@ -19,7 +19,7 @@ def train_one_epoch(model, loader, optimizer, criterion, device):
         optimizer.zero_grad()
         output = model(x)
 
-        target = x
+        target = x # Target same as input
 
         loss = criterion(output, target)
         loss.backward()
@@ -41,7 +41,7 @@ def evaluate(model, loader, criterion, device):
         x = x.to(device)
         output = model(x)
 
-        target = x
+        target = x # Target same as input
 
         loss = criterion(output, target)
         total_loss += loss.item() * x.size(0)
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     test_model = torch.nn.Conv2d(3, 3, kernel_size=1)
     test_device = torch.device("cpu")
 
-    # Data simulation: (input_t, target_t+1)
+    # Data simulation: input_t, target_t+1 (not used)
     dummy_data = [(torch.randn(4, 3, 128, 256), torch.randn(4, 3, 128, 256)) for _ in range(2)]
 
     test_criterion = torch.nn.MSELoss()

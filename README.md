@@ -3,6 +3,33 @@
 ## Project Overview
 This project focuses on the spatial reconstruction of fluid flow fields, specifically the **Von Kármán vortex street**, using unsupervised machine learning and deep learning techniques. The objective is to evaluate and compare the performance of a non-linear Convolutional Autoencoder (CAE) against a traditional linear dimensionality reduction baseline (PCA / POD).
 
+## Repository Structure
+
+```text
+.
+├── notebooks
+│   ├── 00_pca_assement.ipynb
+│   ├── 01_cae_v1_assement.ipynb
+│   ├── 02_cae_v2_assement.ipynb
+│   ├── 03_cae_v3_assement.ipynb
+│   └── eda.ipynb
+├── README.md
+└── src
+    ├── models
+    │   ├── cae_v1.py
+    │   ├── cae_v2.py
+    │   ├── cae_v3.py
+    │   └── pca.py
+    ├── training
+    │   ├── train_cae_v1.py
+    │   ├── train_cae_v2.py
+    │   ├── train_cae_v3.py
+    │   └── train_pca.py
+    └── utils
+        ├── data_loader.py
+        └── engine.py
+```
+
 ## Problem Definition
 The project is formulated as a **dense pixel-wise regression** task on structured 2D grids. The models are designed to map high-dimensional input flow states into a low-dimensional latent space and reconstruct the continuous output fields.
 
@@ -21,8 +48,26 @@ The project is formulated as a **dense pixel-wise regression** task on structure
 * Murata, T., Fukami, K., & Fukagata, K. (2020). Nonlinear mode decomposition with convolutional neural networks for fluid dynamics. *Journal of Fluid Mechanics*, 882. [Link](https://doi.org/10.1017/jfm.2019.822)
 * Brunton, S. L., Noack, B. R., & Koumoutsakos, P. (2020). Machine Learning for Fluid Mechanics. *Annual Review of Fluid Mechanics*, 52, 477-508. [Link](https://doi.org/10.1146/annurev-fluid-010719-060214)
 
+## Execution
+
+All commands must be run from the project root directory.
+
+To execute training for a specific architecture, run:
+
+```python
+# Fit PCA baseline
+python3 -m src.training.train_pca
+
+# Train Convolutional Autoencoders 
+python3 -m src.training.train_cae_v1
+
+python3 -m src.training.train_cae_v2
+
+python3 -m src.training.train_cae_v3
+```
+
 ## Dataset
-The dataset is derived from numerical Navier-Stokes simulations provided by M. Raissi:
+The dataset is derived from numerical simulations provided by M. Raissi:
 [PINNs Data - Cylinder Flow](https://github.com/maziarraissi/PINNs/tree/master/main/Data)
 
 ## Technical Stack

@@ -4,7 +4,7 @@ Description: PyTorch data pipeline for the incompressible Navier-Stokes cylinder
 Provides iterable batches of non-dimensional flow fields (u, v, p) spatial reconstruction
 and dimensionality reduction.
 Author: Marcel Wilanowicz
-Date: 2026-06-05
+Date: 2026-06-16
 """
 
 import numpy as np
@@ -17,8 +17,6 @@ class CylinderDataset(Dataset):
     Dataset for flow past a cylinder at Re=100.
     Provides snapshots of the fluid domain for spatial feature extraction 
     and autoencoder-based reconstruction.
-    
-    Reference: [Raissi et al., 2019, Sec. 4.1.1, p. 693]
     """
 
     def __init__(self, data_path):

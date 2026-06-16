@@ -15,7 +15,7 @@ class FlowPCA:
     Linear PCA baseline for mapping high-dimensional flow fields into low-dimensional latent space.
     Matches the identical latent dimension (n_components) and input/output structure of the CAE.
     """
-    def __init__(self, n_components=8):
+    def __init__(self, n_components=1):
         self.pca = IncrementalPCA(n_components=n_components)
         self.n_components = n_components
         self.original_shape = (3, 128, 256)
@@ -57,11 +57,13 @@ class FlowPCA:
     
 # Testing the script
 if __name__ == "__main__":
+    LATENT_DIM = 1
+
     # Simulate a batch of 8 flow fields (N, C, H, W)
     dummy_input = np.random.randn(8, 3, 128, 256)
 
     try:
-        model = FlowPCA(n_components=8)
+        model = FlowPCA(n_components=LATENT_DIM)
 
         model.fit(dummy_input)
         output = model(dummy_input)
